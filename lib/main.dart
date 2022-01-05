@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:l/l.dart';
 import 'package:pigeon_example/src/ticker_controller.dart';
 
-void main() => runZonedGuarded(
+void main() => runZonedGuarded<void>(
       () => runApp(const App()),
       l.e,
     );
@@ -12,13 +12,10 @@ void main() => runZonedGuarded(
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) => MaterialApp(
         title: 'Pigeon example',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        theme: ThemeData.light(),
         home: const HomeScreen(),
       );
 }
