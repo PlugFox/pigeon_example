@@ -15,6 +15,7 @@ class TickerPlugin : FlutterPlugin, Ticker.TickerSender {
         /// Взаимодействие с подключенным Flutter Engine
         private var sink : Ticker.TickerReceiver? = null
 
+        /// Таймер
         private var timer : java.util.Timer? = null
     }
 
@@ -24,6 +25,7 @@ class TickerPlugin : FlutterPlugin, Ticker.TickerSender {
             Ticker.TickerSender.setup(binding.binaryMessenger, this)
             sink = Ticker.TickerReceiver(binding.binaryMessenger)
             timer?.cancel()
+            timer = null
         }  catch (error: Throwable) {
             Log.e(TAG, "Произошло непредвиденное исключение при подключении TickerPlugin.")
         }
@@ -34,6 +36,7 @@ class TickerPlugin : FlutterPlugin, Ticker.TickerSender {
             timer?.cancel()
             Ticker.TickerSender.setup(binding.binaryMessenger, null)
             sink = null
+            timer = null
         }  catch (error: Throwable) {
             Log.e(TAG, "Произошло непредвиденное исключение при отключении TickerPlugin.")
         }
@@ -74,6 +77,7 @@ class TickerPlugin : FlutterPlugin, Ticker.TickerSender {
     override fun stop(): Ticker.TickerResult {
         return try {
             timer?.cancel()
+            timer = null
             Ticker.TickerResult().apply {
                 successful = true
                 hasError = false
