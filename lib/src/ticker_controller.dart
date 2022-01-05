@@ -9,16 +9,9 @@ abstract class ITickerController implements Listenable {
   DateTime? get date;
   bool get isRunning;
   bool get isNotRunning;
-
   Future<TickerResult> start(Duration period);
-
   Future<TickerResult> stop();
-
-  @protected
-  void onTick(TickerMessage tickerMessage);
 }
-
-// Flutter Framework <= msg => Flutter Engine
 
 class TickerController
     with ChangeNotifier
