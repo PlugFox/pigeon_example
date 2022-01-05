@@ -5,11 +5,22 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:pigeon_example/src/ticker.g.dart';
 
+/// Контроллер управляющий тикером,
+/// с определенной переодичностью уведомляющего подписчиков
 abstract class ITickerController implements Listenable {
-  DateTime? get date;
+  /// Тикер запущен
   bool get isRunning;
+
+  /// Тикер не запущен
   bool get isNotRunning;
+
+  /// Дата последнего тика
+  DateTime? get date;
+
+  /// Запустить тикер
   Future<TickerResult> start(Duration period);
+
+  /// Остановить тикер
   Future<TickerResult> stop();
 }
 
