@@ -55,7 +55,7 @@ class TickerController
 
   @override
   Future<TickerResult> stop() => _sink.stop().then<TickerResult>((value) {
-        _isRunning = !(value.successful ?? false);
+        _isRunning = !(value.successful ?? true);
         if (isNotRunning) {
           _date = null;
         }
