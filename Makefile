@@ -24,15 +24,7 @@ upgrade-major: get
 
 pigeon: get
 	@echo "Running codegeneration"
-	flutter pub run pigeon \
-	 --input "pigeons/ticker.dart" \
-	 --copyright_header "pigeons/copyright_header.txt" \
-	 --dart_out "lib/src/ticker.g.dart" \
-	 --java_out "android/app/src/main/java/dev/plugfox/ticker/Ticker.java" \
-	 --java_package "dev.plugfox.ticker" \
-	 --objc_header_out "ios/Runner/Pigeons/Ticker.h" \
-	 --objc_source_out "ios/Runner/Pigeons/Ticker.m" \
-	 --dart_null_safety
+	flutter pub run pigeon --input "pigeons/ticker.dart"
 
 outdated:
 	@flutter pub outdated

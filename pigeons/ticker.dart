@@ -1,6 +1,16 @@
 // ignore_for_file: one_member_abstracts
 import 'package:pigeon/pigeon.dart';
 
+@ConfigurePigeon(
+  PigeonOptions(
+    copyrightHeader: 'pigeons/copyright_header.txt',
+    dartOut: 'lib/src/ticker.g.dart',
+    javaOut: 'android/app/src/main/java/dev/plugfox/ticker/Ticker.java',
+    javaOptions: JavaOptions(package: 'dev.plugfox.ticker'),
+    objcHeaderOut: 'ios/Runner/Pigeons/Ticker.h',
+    objcSourceOut: 'ios/Runner/Pigeons/Ticker.m',
+  ),
+)
 class TickerDelay {
   int? delay;
 }
