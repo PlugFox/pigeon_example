@@ -20,7 +20,15 @@ class TickerPlugin: NSObject, TickerSender {
     func start(_ tickerDelay: TickerDelay, error: AutoreleasingUnsafeMutablePointer<FlutterError?>) -> TickerResult? {
         timer?.invalidate()
         
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(onTimerTick), userInfo: nil, repeats: true)
+        var interval: Double
+        if let delay = tickerDelay.delay {
+            // Dart sends delay in milliseconds
+            interval = Double(truncating: delay) / 1000
+        } else {
+            interval = 1
+        }
+        
+        timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(onTimerTick), userInfo: nil, repeats: true)
         onTimerTick()
         
         let result = TickerResult()
@@ -43,6 +51,7 @@ class TickerPlugin: NSObject, TickerSender {
     }
     
     @objc func onTimerTick() {
+        // Dart expects timestamp in milliseconds
         let timestamp = Int(Date().timeIntervalSince1970 * 1000)
         let message = TickerMessage()
         message.timestamp = NSNumber(value: timestamp)
