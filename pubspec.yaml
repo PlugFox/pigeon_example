@@ -19,13 +19,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner: ^2.0.6
-  pigeon: ^1.0.12
+  pigeon: ^1.0.14
 
 flutter:
-  plugin:
-    platforms:
-      android:
-        package: dev.plugfox.ticker
-        pluginClass: TickerPlugin
-
   uses-material-design: true
